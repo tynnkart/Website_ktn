@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beranda - Website Pribadi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-light: #a8dadc;
+      --green-muted: #457b9d;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --font-primary: 'Lora', serif;
+      --font-heading: 'Playfair Display', serif;
+      --transition-speed: 0.3s;
+      --text-color: #2d2d2d;
+      --highlight-color: #ff6f61;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, var(--green-light) 0%, var(--white) 70%);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-left: 160px;
+      transition: background 0.5s ease-in-out;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+      }
+    }
+
+    /* Fixed circular photo */
+    .fixed-photo {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform var(--transition-speed);
+      background: var(--green-light);
+      z-index: 1000;
+    }
+    .fixed-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .fixed-photo {
+        position: static;
+        margin: 0 auto 1rem;
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 160px;
+      right: 0;
+      height: 60px;
+      background: var(--white);
+      box-shadow: 0 1px 8px var(--shadow);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 900;
+      transition: left var(--transition-speed);
+    }
+    @media (max-width: 768px) {
+      header {
+        position: static;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        justify-content: center;
+        padding: 1rem;
+      }
+    }
+    nav {
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: var(--green-muted);
+      text-decoration: none;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color var(--transition-speed);
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--highlight-color);
+    }
+    nav a.active {
+      color: var(--highlight-color);
+    }
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--highlight-color);
+      border-radius: 3px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 100px auto 3rem;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--green-muted);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    p.lead {
+      font-size: 1.125rem;
+      color: var(--text-color);
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 6px 16px var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px var(--shadow);
+    }
+
+    .skills-frame {
+      border: 2px solid var(--green-muted);
+      border-radius: 12px;
+      padding: 1rem;
+      background: var(--white);
+    }
+    
+    .confidence-section {
+      padding: 1rem 0;
+      margin: 2rem 0;
+    }
+    
+    .confidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .confidence-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .confidence-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .confidence-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .confidence-quote::before {
+      content: """;
+      font-size: 3rem;
+      position: absolute;
+      top: -15px;
+      left: 10px;
+      color: var(--green-light);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--green-muted);
+      padding: 1rem 0;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed-photo" aria-label="Foto Profil">
+    <img src="k.jpg" alt="Foto Profil" />
+  </div>
+  <header role="banner" aria-label="Navigasi utama">
+    <nav role="navigation" aria-label="Menu utama">
+      <a href="beranda.html" class="active">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="kegiatan.html">Kegiatan</a>
+      <a href="puisi.html">Puisi</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Hi, always have a Good day yahh</h1>
+    <p class="lead">Ini adalah website yang memuat tentang diri saya dengan kamu, (oppss) bercanda. Maksudnya tentang siapa saya.</p>
+
+    <section class="card" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Profil Singkat</h2>
+      <p>Saya adalah seorang mahasiswa semester 2 di universitas nias raya jurusan sistem informasi. Saya perempuan biasa dan sederhana yang pernah hidup dibumi ini sama seperti kamu. Saya Berumur 18 tahun, hobi saya adalah bernyanyi dan menyukaimu hhiii...</p>
+      <img src="fotoku.jpg" alt="Foto Profil" style="width: 100%; border-radius: 8px; margin-top: 1rem;" />
+    </section>
+
+    <section class="skills-frame" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Kemampuan Saya</h2>
+      <ul>
+        <li>Ngoding</li>
+        <li>Memimpin</li>
+        <li>Desain Grafis</li>
+        <li>Public Speaking</li>
+      </ul>
+    </section>
+
+    <section class="confidence-section" aria-labelledby="confidence-heading">
+      <h2 id="confidence-heading" style="color: var(--green-muted); text-align: center; margin-bottom: 2rem;">Mau tahu Cara Meningkatkan Kepercayaan Diri??
+      (Versi Kartina)</h2>
+      <div class="confidence-grid">
+        <div class="confidence-card">
+          <img src="v1.jpg" alt="Tips Visualisasi Diri" style="height: 200px; object-fit: cover;">
+          <h3 style="color: var(--highlight-color);">Teknik Visualisasi</h3>
+          <p>Bayangkan diri Anda sedang berada diruangan kosong sendiri tidak ada satupun orang disana dan anda adalah sosok seseorang yang mempunyai banyak harapan kedepan, banyak yang ingin dilakukan kedepan (bayangkan harapan kamu itu sambil memenjamkan mata kamu). Lalu katakan, <br>harapan saya ini tidak akan pernah terwujud, jika saya tidak percaya diri,jika saya tidak melakukannya, lalu apa yang harus saya lakukan pada dunia yang berisik ini? dunia yang penuh tantangan ini,dunia yang bajingan ini,aku takut(berikan kata kata mu yang lainnya ungkapkan semua...) lalu buka matamu dan katakan "aku kenapa ? ini hanyalah dunia, saya juga berhak menjalani hidup, saya juga berhak mewujudkan harapan saya," <p> ada apa dengan saya?</p> jadi apa yang kamu tunggu? lakukanlah semua harapanmu itu sekarang jangan takut melangkah hanya karna satu atau lebih manusiak penghalang.<p>Karna itu hidup kamu, dan kamu berhak!</p>
+          <ul>
+            <li>Gambarkan diri Anda tampil percaya dengan diri</li>
+            <li>Visualisasikan lingkungan dengan perasaan sukses</li>
+            <li>Latihan rutin setiap pagi</li>
+          </ul>
+        </div>
+        
+        <div class="confidence-card">
+          <img src="v.jpg" alt="Langkah Praktis" style="height: 200px; object-fit: cover;">
+          <h3 style="color: var(--highlight-color);">Teknik Langsung</h3>
+          <p>Mulailah dengan langkah-langkah kecil yang bisa Anda bangun setiap hari:</p>
+          <ol>
+              <li>Wujudkan harapan itu didunia nyata kecil demi kecil akan menjadi besar
+                 <li>Tulis di catatan anda ketika anda sedih,sekarat, bahagia, dll.</li>
+            <li>Buat daftar pencapaian Anda</li>
+            <li>Hadapi ketakutan kecil setiap hari</li>
+            <li>Berlatih berbicara di depan cermin, sendiri</li>
+            <li>Temukan role model inspiratif</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer role="contentinfo">
+    &copy; 2025 Website kartina - Hak Cipta Dilindungi
+  </footer>
+</body>
+</html>

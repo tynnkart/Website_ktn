@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyek - Website Pribadi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-light: #a8dadc;
+      --green-muted: #457b9d;
+      --white: #ffffff;
+      --gray-text: #6b7280;
+      --shadow: rgba(0, 0, 0, 0.07);
+      --font-primary: 'Lora', serif;
+      --font-heading: 'Playfair Display', serif;
+      --transition-speed: 0.3s;
+      --max-width: 1200px;
+      --orange: #ff6f61; /* Tambahkan warna oranye */
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, var(--green-light) 0%, var(--white) 70%);
+      color: var(--green-muted);
+      min-height: 100vh;
+      padding-left: 160px;
+      line-height: 1.5;
+      transition: background 0.5s ease-in-out;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+      }
+    }
+    /* Fixed circular photo */
+    .fixed-photo {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 14px var(--shadow);
+      background: var(--green-light);
+      z-index: 1000;
+      transition: transform var(--transition-speed);
+    }
+    .fixed-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .fixed-photo {
+        position: static;
+        margin: 0 auto 2rem;
+        width: 100px;
+        height: 100px;
+      }
+      body {
+        padding-left: 0;
+      }
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 160px;
+      right: 0;
+      height: 70px;
+      background: var(--white);
+      box-shadow: 0 2px 12px var(--shadow);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 900;
+      transition: left var(--transition-speed);
+    }
+    @media (max-width: 768px) {
+      header {
+        position: static;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        justify-content: center;
+        padding: 1rem;
+      }
+    }
+    nav {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      gap: 2.5rem;
+      user-select: none;
+    }
+    nav a {
+      color: var(--green-muted);
+      text-decoration: none;
+      position: relative;
+      padding: 0.3rem 0;
+      transition: color var(--transition-speed);
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--orange); /* Ubah warna saat hover menjadi oranye */
+      outline: none;
+    }
+    nav a.active {
+      color: var(--orange); /* Ubah warna saat aktif menjadi oranye */
+    }
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--orange); /* Ubah warna garis bawah menjadi oranye */
+      border-radius: 5px;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 100px auto 3rem;
+      padding: 0 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--green-muted);
+      margin: 0 0 0.75rem 0;
+      line-height: 1.1;
+    }
+
+    /* Poem card */
+    .poem-card {
+      background: var(--white);
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 24px var(--shadow);
+      padding: 3rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--gray-text);
+      line-height: 1.8;
+      white-space: pre-line;
+      font-style: italic;
+      user-select: text;
+      transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+    }
+    .poem-card:hover {
+      box-shadow: 0 12px 32px rgba(0, 123, 123, 0.15);
+      transform: translateY(-6px);
+    }
+    .poem-image {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--green-muted);
+      padding: 1.5rem 0;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed-photo" aria-label="Foto Profil">
+    <img src="k.jpg" alt="Foto Profil" />
+  </div>
+  <header role="banner" aria-label="Navigasi utama">
+    <nav role="navigation" aria-label="Menu utama">
+      <a href="beranda.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="kegiatan.html">Kegiatan</a>
+      <a href="puisi.html" class="active" aria-current="page">Puisi</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Puisi Saya</h1>
+
+    <section class="poem-card" aria-label="Puisi Pertama">
+      <p>
+        Mimpi-mimpi yang terbang tinggi<br>
+        Harapan-harapan yang tak pernah mati<br>
+        Membuatku merasa hidup dan kuat<br>
+        Berjuang untuk mencapai impianku<br>
+        <img src="puisi.jpg" alt="Ilustrasi Puisi Pertama" class="poem-image" />
+      </p>
+    </section>
+
+    <section class="poem-card" aria-label="Puisi Kedua">
+      <p>
+        Hidup ini penuh dengan tantangan<br>
+        Tapi aku tak akan takut<br>
+        Aku akan menghadapi setiap rintangan<br>
+        Dengan keberanian dan kekuatan<br>
+        <img src="puisi1.jpg" alt="Ilustrasi Puisi Kedua" class="poem-image" />
+      </p>
+    </section>
+
+    <section class="poem-card" aria-label="Puisi Ketiga">
+      <p>
+        Mimpi-mimpi yang terbang tinggi<br>
+        Membuatku merasa bahagia dan puas<br>
+        Aku akan terus berjuang untuk mencapai<br>
+        Impianku yang tak pernah mati<br>
+        <img src="puisi2.jpg" alt="Ilustrasi Puisi Ketiga" class="poem-image" />
+      </p>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    &copy; 2024 Website kartina - Hak Cipta Dilindungi
+  </footer>
+</body>
+</html>

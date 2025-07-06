@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Datang!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #8fbc8f, #e6e6fa); /* Gradasi hijau muda ke lavender */
+      overflow: hidden; /* Sembunyikan overflow untuk animasi bunga */
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      position: relative;
+    }
+
+    .flower-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Agar tidak mengganggu klik tombol */
+      overflow: hidden;
+    }
+
+    .flower {
+      position: absolute;
+      bottom: -20px; /* Mulai dari bawah layar */
+      width: 30px;
+      height: 30px;
+      background-color: #ffb6c1; /* Pink muda */
+      border-radius: 50%;
+      opacity: 0;
+      animation: growAndFloat 15s infinite ease-out;
+    }
+
+    .flower::before {
+      content: '';
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      background-color: #f08080; /* Merah muda yang lebih gelap */
+      border-radius: 50%;
+      top: 15%;
+      left: 15%;
+    }
+
+    .flower:nth-child(2n) {
+      background-color: #add8e6; /* Biru muda */
+    }
+
+    .flower:nth-child(2n)::before {
+      background-color: #87ceeb; /* Biru muda yang lebih gelap */
+    }
+
+    /* Animasi bunga */
+    @keyframes growAndFloat {
+      0% {
+        transform: scale(0) translateY(0);
+        opacity: 0;
+      }
+      10% {
+        transform: scale(0.8) translateY(-50px);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5) translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Penempatan bunga acak */
+    .flower:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+    .flower:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 14s; }
+    .flower:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 10s; }
+    .flower:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 13s; }
+    .flower:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 11s; }
+    .flower:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 15s; }
+    .flower:nth-child(7) { left: 5%; animation-delay: 6s; animation-duration: 9s; }
+    .flower:nth-child(8) { left: 90%; animation-delay: 7s; animation-duration: 12s; }
+    .flower:nth-child(9) { left: 30%; animation-delay: 8s; animation-duration: 10s; }
+    .flower:nth-child(10) { left: 60%; animation-delay: 0.5s; animation-duration: 14s; }
+
+    .content-wrapper {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px 60px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      z-index: 10; /* Pastikan di atas bunga */
+      max-width: 90%; /* Max width for larger screens */
+      width: 400px; /* Fixed width for smaller screens */
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #007acc;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .enter-button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 5px 15px rgba(0, 122, 204, 0.4);
+    }
+
+    .enter-button:hover {
+      background-color: #005fa3;
+      transform: translateY(-3px);
+    }
+
+    .enter-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 122, 204, 0.4);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5em; /* Smaller font size for smaller screens */
+      }
+      p {
+        font-size: 1em; /* Smaller font size for smaller screens */
+      }
+      .enter-button {
+        padding: 12px 25px; /* Smaller padding for smaller screens */
+        font-size: 1em; /* Smaller font size for smaller screens */
+      }
+    }
+
+    @media (max-width: 400px) {
+      .content-wrapper {
+        padding: 20px 30px; /* Smaller padding for very small screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flower-container">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+
+  <div class="content-wrapper">
+    <h1>Selamat Datang di Website Kartina</h1>
+    <p>Masuk tanpa ilmu, Keluar dengan ilmu.</p></p>
+    <a href="beranda.html" class="enter-button">Masuk</a>
+  </div>
+</body>
+</html>

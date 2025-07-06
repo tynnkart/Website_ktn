@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto Artistik</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--light);
+            margin: 0;
+            padding: 2rem;
+            color: var(--dark);
+        }
+        
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .gallery-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 1rem auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            aspect-ratio: 4/3;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .artistic-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .artistic-overlay {
+            transform: translateY(0);
+        }
+        
+        .artistic-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .artistic-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .background-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-weight: 700;
+            z-index: 1;
+            pointer-events: none;
+            font-family: 'Times New Roman', serif;
+            line-height: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .background-text {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Animasi latar belakang */
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .back-button {
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary) !important;
+            transform: translateY(-2px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="gallery-title">Galeri Kartina</h1>
+    
+    <div class="gallery-grid">
+        <!-- Item 1 -->
+        <div class="gallery-item">
+            <div class="background-text">SMA</div>
+            <img src="g.jpg" alt="Lukisan abstrak dengan sapuan kuas tebal dan warna-warna cerah" class="gallery-img">
+            <div class="artistic-overlay">
+                <h3 class="artistic-title">SMA</h3>
+                <p class="artistic-text">Bagaimana dengan masa SMA mu? .</p>
+            </div>
+        </div>
+        
+        <!-- Item 2 -->
+        <div class="gallery-item">
+            <div class="background-text">Kuliah</div>
+            <img src="g1.jpg" alt="Fotografi urban hitam putih dengan kontras tinggi dan tekstur kasar" class="gallery-img">
+            <div class="artistic-overlay">
+                <h3 class="artistic-title">Sistem Informasi</h3>
+                <p class="artistic-text">Keindahan dalam kesederhanaan kami di prodi sistem informasi .</p>
+            </div>
+        </div>
+        
+        <!-- Item 3 -->
+        <div class="gallery-item">
+            <div class="background-text">Kreasi</div>
+            <img src="g3.jpg" alt="Kolase digital dengan elemen vintage dan tipografi eksperimental" class="gallery-img">
+            <div class="artistic-overlay">
+                <h3 class="artistic-title">Dog</h3>
+                <p class="artistic-text">Aku suka binatang seperti anjing, karna anjing itu snagat setia dan bikin happy truzzzz...</p>
+            </div>
+        </div>
+        
+        <!-- Item 4 -->
+        <div class="gallery-item">
+            <div class="background-text">omg!</div>
+            <img src="g2.jpg" alt="Fotografi alam dengan konsep minimalis dan komposisi geometris" class="gallery-img">
+            <div class="artistic-overlay">
+                <h3 class="artistic-title">Angel picture</h3>
+                <p class="artistic-text">Ini siapa? Bidadari?sangat cantikk (;</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Efek tambahan saat hover
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const bgText = item.querySelector('.background-text');
+                bgText.style.transition = 'all 0.5s ease';
+                bgText.style.transform = 'scale(1.1)';
+                bgText.style.opacity = '0.15';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const bgText = item.querySelector('.background-text');
+                bgText.style.transform = 'scale(1)';
+                bgText.style.opacity = '0.1';
+            });
+        });
+    </script>
+
+    <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(to right, rgba(44,62,80,0.1), rgba(231,76,60,0.1)); border-radius: 8px;">
+        <a href="tentang.html" style="display: inline-block; padding: 12px 24px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;">Kembali ke Atas</a>
+    </div>
+</body>
+</html>

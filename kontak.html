@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontak - Website Pribadi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-light: #a8dadc;
+      --green-muted: #457b9d;
+      --white: #ffffff;
+      --gray-text: #6b7280;
+      --shadow: rgba(0, 0, 0, 0.12);
+      --font-primary: 'Lora', serif;
+      --font-heading: 'Playfair Display', serif;
+      --transition-speed: 0.3s;
+      --max-width: 700px;
+      --orange: #ff6f61; /* Tambahkan warna oranye */
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, var(--green-light) 0%, var(--white) 70%);
+      color: var(--green-muted);
+      min-height: 100vh;
+      padding-left: 160px;
+      overflow-x: hidden;
+      position: relative;
+      transition: background 0.5s ease-in-out;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+      }
+    }
+
+    /* Flower petals animation container behind content */
+    .flower-petals {
+      pointer-events: none;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: visible;
+      z-index: 0;
+    }
+
+    .petal {
+      position: absolute;
+      bottom: -40px;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Cherry_blossom_icon.svg/120px-Cherry_blossom_icon.svg.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.3;
+      animation-name: floatUp;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.05));
+      will-change: transform;
+      user-select: none;
+    }
+
+    /* create variations for petals */
+    .petal:nth-child(1) {
+      left: 10%;
+      animation-duration: 12s;
+      animation-delay: 0s;
+      transform: rotate(15deg);
+    }
+    .petal:nth-child(2) {
+      left: 25%;
+      animation-duration: 15s;
+      animation-delay: 3s;
+      width: 25px;
+      height: 25px;
+      opacity: 0.25;
+      transform: rotate(-10deg);
+    }
+    .petal:nth-child(3) {
+      left: 40%;
+      animation-duration: 10s;
+      animation-delay: 5s;
+      opacity: 0.35;
+      transform: rotate(20deg);
+    }
+    .petal:nth-child(4) {
+      left: 55%;
+      animation-duration: 14s;
+      animation-delay: 2s;
+      opacity: 0.3;
+      width: 18px;
+      height: 18px;
+      transform: rotate(-25deg);
+    }
+    .petal:nth-child(5) {
+      left: 70%;
+      animation-duration: 11s;
+      animation-delay: 4s;
+      opacity: 0.28;
+      width: 22px;
+      height: 22px;
+      transform: rotate(10deg);
+    }
+    .petal:nth-child(6) {
+      left: 85%;
+      animation-duration: 13s;
+      animation-delay: 1s;
+      opacity: 0.32;
+      width: 20px;
+      height: 20px;
+      transform: rotate(-15deg);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Fixed circular photo */
+    .fixed-photo {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+      background: var(--green-light);
+      z-index: 1000;
+      transition: transform var(--transition-speed);
+    }
+    .fixed-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .fixed-photo {
+        position: static;
+        margin: 0 auto 1rem;
+        width: 100px;
+        height: 100px;
+      }
+      body {
+        padding-left: 0;
+      }
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 160px;
+      right: 0;
+      height: 60px;
+      background: var(--white);
+      box-shadow: 0 1px 8px var(--shadow);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 900;
+      transition: left var(--transition-speed);
+    }
+    @media (max-width: 768px) {
+      header {
+        position: static;
+        left: 0;
+        width: 100%;
+        box-shadow: none;
+        justify-content: center;
+        padding: 1rem;
+      }
+    }
+    nav {
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: var(--green-muted);
+      text-decoration: none;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color var(--transition-speed);
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--orange); /* Ubah warna saat hover menjadi oranye */
+      outline: none;
+    }
+    nav a.active {
+      color: var(--orange); /* Ubah warna saat aktif menjadi oranye */
+    }
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--orange); /* Ubah warna garis bawah menjadi oranye */
+      border-radius: 3px;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 100px auto 3rem;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 3.25rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--green-muted);
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    form {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px var(--shadow);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--green-muted);
+      user-select: none;
+    }
+    input, textarea {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      resize: vertical;
+      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green-light);
+      box-shadow: 0 0 8px var(--green-light);
+    }
+    textarea {
+      min-height: 120px;
+    }
+    button {
+      background: var(--green-light);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color var(--transition-speed);
+      max-width: 180px;
+      align-self: flex-start;
+      user-select: none;
+      box-shadow: 0 6px 12px rgba(123, 205, 204, 0.4);
+    }
+    button:hover, button:focus {
+      background: #7ec8c7;
+      outline: none;
+      box-shadow: 0 8px 16px rgba(123, 205, 204, 0.65);
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--green-muted);
+      padding: 1rem 0 2rem;
+      font-size: 0.875rem;
+      user-select: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="fixed-photo" aria-label="Foto Profil">
+    <img src="k.jpg" alt="Foto Profil" />
+  </div>
+
+  <header role="banner" aria-label="Navigasi utama">
+    <nav role="navigation" aria-label="Menu utama">
+      <a href="beranda.html">Beranda</a>
+      <a href="tentang.html">Tentang</a>
+      <a href="kegiatan.html">Kegiatan</a>
+      <a href="puisi.html">Puisi</a>
+      <a href="kontak.html" class="active" aria-current="page">Kontak</a>
+    </nav>
+  </header>
+
+  <div class="flower-petals" aria-hidden="true">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+
+  <main>
+    <h1>Kontak Saya</h1>
+    <form action="#" method="post" novalidate>
+      <label for="name">Nama Lengkap</label>
+      <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap Anda" required autocomplete="name" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Masukkan alamat email Anda" required autocomplete="email" />
+
+      <label for="message">Pesan</label>
+      <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+
+      <button type="submit">Kirim Pesan</button>
+    </form>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2024 Website kartina - Hak Cipta Dilindungi
+  </footer>
+</body>
+</html>
